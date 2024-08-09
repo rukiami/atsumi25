@@ -1,0 +1,57 @@
+{% extends "account/base.html" %}
+
+{% block title %}Restaurant List{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>レストラン一覧</h2>  
+
+    <ul class="restaurant-list">
+      <form method="post" enctype="multipart/form-data">
+        <!-- ... 他のフォームフィールド ... -->
+        <label for="imageInput">画像を選択：</label>
+        <input type="file" id="imageInput" name="image" accept="image/*">
+        <img id="imagePreview" src="#" alt="選択した画像" style="display:none;">
+        <!-- 送信ボタン等のその他のフォーム要素 -->
+    </form>
+    
+    <!-- ファイル選択時に画像をプレビュー表示するJavaScriptコード -->
+    <script>
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.src = e.target.result;
+            preview.style.display = 'block'; // プレビュー画像を表示
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
+    </script>  
+      {% for restaurant in restaurants %} 
+        <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}">
+            {{ restaurant.name }}
+          </a>
+          - {{ restaurant.address|default:"(未記入)" }}
+          {% if restaurant.url %}
+            <br>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a>
+          {% else %}
+            <br>ウェブサイト: (未記入)
+          {% endif %}
+        </li>
+        {% empty %}
+        <p>まだ登録はありません</p>
+      {% endfor %}
+    </ul>
+
+    <div class="centered-button-container">
+      {% comment %} <div class="back-button-container">  {% endcomment %}
+      {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
+      {% comment %} <button type="button" onclick="history.back()" class="btn-home">ホームに戻る</button> {% endcomment %}
+      <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>
+        {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
+    </div>
+  </div>
+{% endblock %}
+
+    

@@ -1,0 +1,17 @@
+{% extends "account/base.html" %}
+{% block title %}ホーム{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="gourmet-diary-title">Welcome app</h1>
+    <p class="comment">自分だけのグルメを記録しよう</p>
+    {% comment %} <h1 class="my-5"></h1>
+    <p>{{ user.username }}only my gourmet diary</p> {% endcomment %}
+    {% comment %} <a href="{% url 'account:calendar' %}">カレンダー</a> {% endcomment %}
+    <a href="{% url 'account:register_restaurant' %}">店舗登録</a>
+    <a href="{% url 'account:restaurant_list' %}">店舗一覧</a>
+    <a href="{% url 'account:search' %}">ジャンル検索</a>
+    <a href="{% url 'account:logout' %}">ログアウト</a>
+</div>
+
+{% endblock %}

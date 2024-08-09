@@ -1,0 +1,43 @@
+body, html {
+    background-color: white; /* 背景色を白に設定 */
+    color: black; /* テキスト色を黒に設定 */
+}
+
+.header {
+    background-color: coral; /* ヘッダーの背景色を設定 */
+    color: white; /* ヘッダーのテキスト色を白に設定 */
+    padding: 10px 0; /* 上下の余白を設定 */
+    text-align: center; /* テキストを中央揃え */
+    width: 50%; /* ヘッダーの幅を半分に設定 */
+    margin: 10px auto; /* 上下のマージンを10px、左右を自動に設定 */
+}
+
+.main-title {
+    font-size: 20px; /* タイトルのフォントサイズを小さく設定 */
+    margin-top: 5px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}
+
+/* ログイン、新規登録ボタンのスタイル */
+.btn, .btn-back {
+    background-color: coral; /* ボタンの背景色 */
+    color: white; /* ボタンのテキスト色 */
+    padding: 10px 20px; /* ボタン内の余白 */
+    border-radius: 5px; /* ボタンの角丸設定 */
+    text-transform: uppercase; /* テキストを大文字に */
+    font-weight: bold; /* テキストを太字に */
+    margin: 5px; /* ボタン間のマージン */
+    text-align: center; /* テキストを中央揃え */
+    display: inline-block; /* ボタンをインラインブロック要素に */
+    text-decoration: none; /* 下線を無効に */
+    cursor: pointer; /* カーソルをポインターに */
+    width: auto; /* ボタンの幅を自動に */
+    margin-top: 50px; /* ボタンの上の余白を大きくする */
+}
+
+.container {
+    margin-top: 50px; /* コンテナの上のマージンを大きくして要素を下に移動 */
+    /* その他のコンテナスタイルは変更なし */
+}
+
+/* その他のスタイルは変更なし、追加したいスタイルはここに記述 */

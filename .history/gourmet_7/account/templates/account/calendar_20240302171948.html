@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css' rel='stylesheet' />
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar')
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          selectable: true, // 日付を選択可能にする
+          select: function(info) {
+            // 日付が選択されたときの処理
+            const title = prompt('イベントのタイトルを入力してください:')
+            if (title) {
+              calendar.addEvent({
+                title: title,
+                start: info.startStr,
+                end: info.endStr,
+                allDay: info.allDay
+              })
+            }
+          }
+        })
+        calendar.render()
+        / イベント追加ボタンがクリックされたときの処理
+        const addButton = document.getElementById('addEventButton');
+        addButton.addEventListener('click', function() {
+          const title = prompt('イベントのタイトルを入力してください:');
+          if (title) {
+            calendar.addEvent({ title: title, start: new Date(), allDay: true });
+          }
+        });
+      })
+
+    
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <!-- イベント追加ボタン -->
+      <button id="addEventButton">イベントを追加する</button>
+    </div>    
+    <div id='calendar'></div>
+  </body>
+</html>

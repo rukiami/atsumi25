@@ -1,0 +1,37 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <style>
+    div{
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div>
+    <form action="{% url 'restaurant_photos' restaurant_id=54 %}" method="post" enctype="multipart/form-data">
+
+    <div>
+      <input type="file" name="test">
+    </div>
+    <div>
+      <input type="submit" value="送信する">
+    </div>
+  </form>
+</div>
+</body>
+</html>
+
+
+<div class="centered-button-container">
+    <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+    {% comment %} <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a> {% endcomment %}
+</div>

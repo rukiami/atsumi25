@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ store.name }}</h2>
+    <p>{{ store.description }}</p>
+    <p>カテゴリー: {{ store.category }}</p>
+    <p>場所: {{ store.location }}</p>
+    <!-- その他の詳細情報 -->
+{% endblock %}

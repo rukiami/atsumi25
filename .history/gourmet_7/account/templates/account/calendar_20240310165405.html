@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js'></script>
+    <style>
+        /* Your existing CSS */
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dateClick: function(info) {
+                    document.getElementById('eventDate').value = info.dateStr;
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('eventForm').style.display = 'block';
+                }
+            });
+            calendar.render();
+
+            document.getElementById('saveButton').addEventListener('click', function() {
+                const title = document.getElementById('eventTitle').value;
+                const location = document.getElementById('eventLocation').value;
+                const genre = document.getElementById('eventGenre').value;
+                const priceRange = document.getElementById('eventPriceRange').value;
+                const date = document.getElementById('eventDate').value;
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                // Ensure the title is not empty before adding the event and sending data
+                if (title) {
+                    calendar.addEvent({
+                        title: title,
+                        start: date,
+                        end: date,  // Use the same date for start and end for an all-day event
+                        extendedProps: {
+                            location: location,
+                            genre: genre,
+                            priceRange: priceRange
+                        }
+                    });
+
+                    fetch('/add_event/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken  // Ensure CSRF token is sent
+                        },
+                        body: JSON.stringify({
+                            'event_name': title,
+                            'start_date': date,  // Sending the date as start_date
+                            'end_date': date,  // Sending the same date as end_date
+                            'location': location,
+                            'genre': genre,
+                            'priceRange': priceRange
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        document.getElementById('overlay').style.display = 'none';
+                        document.getElementById('eventForm').style.display = 'none';
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+            });
+
+            document.getElementById('cancelButton').addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('eventForm').style.display = 'none';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id='calendar'></div> 
+    <div id='overlay'></div>
+    <div id='eventForm'>
+        <!-- CSRF token for security -->
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <!-- Hidden input to store date selected from calendar -->
+        <input type="hidden" id="eventDate">
+        
+        <!-- Input fields for event data -->
+        レストラン名：<input type="text" id="eventTitle"><br>
+        場所：<input type="text" id="eventLocation"><br>
+        ジャンル：<input type="text" id="eventGenre"><br>
+        価格帯：<input type="text" id="eventPriceRange"><br>
+        
+        <!-- Buttons for saving or cancelling the event -->
+        <button id='saveButton'>保存</button>
+        <button id='cancelButton'>キャンセル</button>
+    </div>
+</body>
+</html>

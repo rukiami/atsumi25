@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>店舗登録 - Only my gourmet diary</title>
+</head>
+<body>
+    <h1>店舗登録</h1>
+    <form action="{% url 'accont/register_restaurant' %}" method="post">
+    {% comment %} <form action="/register_store" method="post"> {% endcomment %}
+        <label for="restaurant_name">店名:</label>
+        <input type="text" id="restaurant_name" name="restaurant_name" required><br><br>
+
+        <label for="location">場所:</label>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="phone_number">電話番号:</label>
+        <input type="tel" id="phone_number" name="phone_number"><br><br>
+
+        <label for="category">カテゴリ:</label>
+        <select id="category" name="category">
+            <option value="和食">和食</option>
+            <option value="洋食">洋食</option>
+            <option value="中華">中華</option>
+            <option value="イタリアン">イタリアン</option>
+            <option value="韓国">韓国</option>
+            <option value="カフェ">カフェ</option>
+            <!-- 他のカテゴリーを追加 -->
+        </select><br><br>
+
+        <label for="price_range">価格帯:</label>
+        <select id="price_range" name="price_range">
+            <option value="~¥999">~¥999</option>
+            <option value="¥1000~¥1999">¥1000~¥1999</option>
+            <option value="¥2000~¥2999">¥2000~¥2999</option>
+            <option value="¥3000~¥3999">¥3000~¥3999</option>
+            <option value="¥4000以上">¥4000以上</option>
+        </select><br><br>
+
+        <label for="map">Googleマップ:</label>
+        <textarea id="map" name="map" placeholder="Googleマップ埋め込みコードまたは場所のURL"></textarea><br><br>
+
+        <label for="photo">店舗写真:</label>
+        <input type="file" id="photo" name="photo"><br><br>
+
+        <input type="submit" value="登録">
+    </form>
+</body>
+</html>

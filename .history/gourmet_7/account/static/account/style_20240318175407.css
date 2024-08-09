@@ -1,0 +1,123 @@
+body, html {
+    background-color: coral; /* 背景色を白に設定 */
+    color: white; /* テキスト色を黒に設定 */
+}
+
+/* ヘッダー全体ではなく、タイトル部分のみにスタイルを適用 */
+.header {
+    background-color: coral; /* 背景色をコーラルに */
+    color: white; /* テキスト色を白に */
+    padding: 20px 40px; /* 上下左右に20pxのパディング */
+    border-radius: 10px; /* 角の丸みを設定 */
+    display: inline-block; /* インラインブロックとして表示 */
+    
+}
+
+/* その他のスタイルはそのままにしておく */
+
+
+
+
+
+a {
+    color: SaddleBrown; /* リンクのテキスト色 */
+    text-decoration: none; /* リンクの下線を削除 */
+}
+
+a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    
+    
+}
+
+
+.alert {
+    color: red; /* アラートメッセージの色 */
+    text-align: center; /* アラートメッセージを中央揃えに */
+    margin-bottom: 20px; /* アラートメッセージの下のマージン */
+}
+
+.subheader {
+    margin-bottom: 15px; /* サブヘッダーの下部の余白 */
+    border: none; /* 枠線を削除 */
+    box-shadow: none;
+}
+
+.restaurant-list {
+    list-style: none; /* リストマーカーを除去 */
+    padding: 0; /* リストのパディングをリセット */
+    margin-bottom: 20px; /* リストの下部の余白 */
+    color: RoyalBlue; /* リストのテキスト色を変更 */
+    border: none;
+}
+
+.restaurant-link {
+    color: RoyalBlue; /* リンクの色 */
+    font-weight: bold; /* リンクの太字 */
+}
+
+.restaurant-link:hover {
+    color: black; /* リンクにマウスを合わせた時の色 */
+}
+
+.btn {
+    background-color: coral; /* ボタンの背景色 */
+    color: white; /* ボタンのテキスト色 */
+    padding: 10px 20px; /* テキストの周囲の余白 */
+    border: none; /* ボタンの枠線を削除 */
+    border-radius: 5px; /* ボタンの角を丸くする */
+    text-transform: uppercase; /* テキストを大文字に */
+    font-weight: bold; /* テキストを太字に */
+    cursor: pointer; /* マウスカーソルをポインターに */
+    margin: 10px 0; /* ボタン間の余白 */
+    display: inline-block; /* ボタンをインラインブロック要素に */
+}
+
+.btn:hover {
+    background-color: #ff7f50; /* ホバー時の背景色を少し暗く */
+}
+
+.no-restaurants {
+    font-style: italic; /* 登録がない場合のスタイル */
+}
+
+.genre-search, .logout-link, .home-return {
+    color: RoyalBlue; /* 新しい色に変更 */
+}
+
+.centered-container { /* 統合されたクラス名 */
+    display: flex; /* Flexboxを有効にする */
+    flex-direction: column; /* アイテムを縦並びにする */
+    justify-content: center; /* 水平方向に中央揃えにする */
+    align-items: center; /* 垂直方向に中央揃え */
+   
+}
+
+.button-container {
+    display: flex; /* Flexboxを使用 */
+    flex-direction: column; /* 子要素を縦に並べる */
+    align-items: center; /* 子要素を中央に揃える */
+    justify-content: center; /* 子要素を中央に配置 */
+    margin: 20px 0; /* コンテナの上下のマージン */
+}
+
+h1 {
+    text-align: center; /* テキストを中央揃えに */
+    width: 100%; /* 幅を全体に */
+    margin-top: 20px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}
+
+.main-title {
+    text-align: center; /* テキストを中央揃えに */
+    width: 100%; /* 幅を全体に */
+    margin-top: 20px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}

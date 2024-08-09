@@ -1,0 +1,47 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+{% block title %}カレンダー{% endblock %}
+
+{% block extrahead %}
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id='calendar'></div>
+    <script>
+        var calendar;  // カレンダーをグローバル変数で保持する
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dateClick: function(info) {
+                    document.getElementById('eventDate').value = info.dateStr; // クリックされた日付をフォームにセット
+                    $('#eventModal').modal('show'); // モーダルを表示する
+                }
+            });
+            calendar.render();
+        });
+
+        function saveEvent() {
+            var title = document.getElementById('eventTitle').value;
+            var date = document.getElementById('eventDate').value;
+            if (title) {
+                calendar.addEvent({
+                    title: title,
+                    start: date,
+                    allDay: true
+                });
+                $('#eventModal').modal('hide'); // モーダルを非表示にする
+            }
+        }
+        
+        // イベント保存ボタンにイベントリスナーを追加
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('saveEvent').addEventListener('click', saveEvent);
+        });
+    </script>
+{% endblock %}

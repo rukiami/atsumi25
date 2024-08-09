@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FullCalendar イベント作成ページ</title>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css' rel='stylesheet' />
+    <style>
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      #calendarContainer {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FullCalendar イベント作成ページ</h1>
+    <div id="eventCreationPage">
+      <h2>イベントを追加する</h2>
+      <form id="eventForm">
+        <label for="date">日付選択:</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="storeName">店名:</label>
+        <input type="text" id="storeName" name="storeName" required>
+
+        <label for="genre">ジャンル:</label>
+        <input type="text" id="genre" name="genre" required>
+
+        <label for="location">場所:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="priceRange">価格帯:</label>
+        <input type="text" id="priceRange" name="priceRange" required>
+
+        <label for="photo">写真アップロード:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+
+        <label for="mapUrl">GoogleマップURL:</label>
+        <input type="url" id="mapUrl" name="mapUrl" required>
+
+        <button type="submit">イベントを追加する</button>
+        <button type="button" onclick="hideEventCreationPage()">キャンセル</button>
+      </form>
+    </div>
+
+    <button onclick="showEventCreationPage()">イベントを追加する</button>
+
+    <div id='calendarContainer'>
+      <div id='calendar'></div>
+    </div>
+
+    <script>
+      function showEventCreationPage() {
+        document.getElementById("eventCreationPage").style.display = "block";
+        document.getElementById("calendarContainer").style.display = "block";
+      }
+
+      function hideEventCreationPage() {
+        document.getElementById("eventCreationPage").style.display = "none";
+        document.getElementById("calendarContainer").style.display = "none";
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar')
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          selectable: true, // 日付を選択可能にする
+          select: function(info) {
+            // 日付が選択されたときの処理
+            document.getElementById('date').value = info.startStr;
+          }
+        })
+
+        // イベント作成フォームが送信されたときの処理
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const formData = new FormData(event.target);
+
+          const eventData = {};
+          formData.forEach(function(value, key){
+            eventData[key] = value;
+          });
+
+          calendar.addEvent({
+            title: eventData.storeName,
+            start: eventData.date,
+            extendedProps: {
+              genre: eventData.genre,
+              location: eventData.location,
+              priceRange: eventData.priceRange,
+              photo: eventData.photo,
+              mapUrl: eventData.mapUrl
+            }
+          });
+
+          hideEventCreationPage();
+          event.target.reset(); // フォームをリセットする
+        });
+
+        calendar.render();
+      })
+    </script>
+  </body>
+</html>

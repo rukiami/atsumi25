@@ -1,0 +1,32 @@
+<!-- 例えば add_restaurant.html -->
+{% extends "account/base.html" %}
+<div class="container">
+  <h1>店舗登録</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+      {{ field.label_tag }} {{ field }}
+      {% if field.field.widget.input_type == 'file' %}
+        <img id="preview_{{ forloop.counter }}" src="#" alt="Image preview..." style="width: 200px; height: auto;">
+        <script>
+          document.getElementById("{{ field.id_for_label }}").addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById("preview_{{ forloop.counter }}").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          });
+        </script>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <button type="submit">送信</button>
+
+
+  </form>
+  <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+</div>
+{% endblock %}
+

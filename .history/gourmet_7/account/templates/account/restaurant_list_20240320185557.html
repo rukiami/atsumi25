@@ -1,0 +1,91 @@
+<!-- templates/account/restaurant_list.html -->
+{% extends "account/base.html" %}
+
+{% block title %}Restaurant List{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% comment %} <div class="restaurant-list"> {% endcomment %}
+    <h2>レストラン一覧</h2>  
+    {% comment %} <h1 class="header">Restaurant List</h1> {% endcomment %}
+    {% comment %} <p class="subheader">お店を登録しよう</p> {% endcomment %}
+    {% comment %} <h1>Restaurant List</h1>
+    <p>お店を登録しよう</p> <!-- 追加する行 --> {% endcomment %}
+    <a href="{% url 'account:add_restaurant' %}" class="btn btn-primary">お店を登録</a>
+    {% if restaurants %}
+    <ul class="restaurant-list">
+      {% for restaurant in restaurants %} 
+        <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}" class="restaurant-link">{{ restaurant.name }}</a>
+          {% if restaurant.address %} 
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>まだ登録はありません</p>
+  {% endif %}
+  
+  <a href="{% url 'account:home' %}" class="btn btn-secondary">ホームに戻る</a>
+</div>
+{% endblock %}
+    {% comment %} {% if restaurants %}
+     <ul class="restaurant-list">
+      {% for restaurant in restaurants %} 
+        <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}" class="restaurant-link">{{ restaurant.name }}</a>
+        </li>
+      {% empty %}
+        <li class="no-restaurants">まだ登録はありません</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'account:home' %}" class="btn btn-secondary">ホームに戻る</a>
+</div>
+{% endblock %} {% endcomment %}
+
+    {% comment %} <!-- 検索フォーム -->
+    <form method="get" class="search-form">
+      {{ search_form.as_p }}
+      <button type="submit">検索</button>
+      <button type="button" class="btn btn-secondary" onclick="history.back()">戻る</button>
+      <a href="{% url 'account:add_restaurant' %}" class="btn btn-primary">追加</a>  <!-- 追加ボタン --> {% endcomment %}
+    
+    
+    {% comment %} </form>
+
+
+
+    <ul>
+      {% for restaurant in restaurants %} 
+        <li>
+        <a href="{% url 'account:restaurant_detail' restaurant.id %}">{{ restaurant.name }}</a>
+        {% if restaurant.address %} - {{ restaurant.address }}{% endif %}
+        </li>
+    {% empty %}
+      <li>まだ登録はありません</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'account:home' %}" class="btn btn-secondary">ホームに戻る</a>
+
+</div> {% endcomment %}
+{% comment %} {% endblock %} {% endcomment %}
+        {% comment %} <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}">{{ restaurant.name }}</a>
+          {% if restaurant.address %} - {{ restaurant.address }}{% endif %}
+          <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="submit" value="削除" onclick="return confirm('本当にこのお店を削除しますか？');">
+        </form>
+      </li>
+    {% empty %}
+      <li>No restaurants available.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %} {% endcomment %}
+        {% comment %} </li>
+      {% empty %}
+        <li>No restaurants available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %} {% endcomment %}

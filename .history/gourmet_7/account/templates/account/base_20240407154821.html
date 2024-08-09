@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Only my gourmet note{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'account/favicon.ico' %}">
+</head>
+<body>
+    <div class="header">   
+        <h1>Only my gourmet note</h1>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}
+        <div class="image-container" style="display: flex; justify-content: center;">
+            <img src="{% static 'path/to/your/image.jpg' %}" alt="説明文">
+        </div>
+        <!-- ここに各ページのコンテンツが挿入されます -->
+        {% endblock %}
+    </div>
+</body>
+</html>

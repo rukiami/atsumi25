@@ -1,0 +1,49 @@
+{% extends 'account/base.html' %}
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <h1>{{ restaurant.name }}</h1>
+  <p>場所: {{ restaurant.location }}</p>
+  <p>ジャンル: {{ restaurant.genre }}</p>
+  <p>価格帯: {{ restaurant.price_range }}</p>
+  {% if restaurant.google_maps %}
+  <p>Googleマップ: <a href="{{ restaurant.google_maps }}" target="_blank">{{ restaurant.google_maps }}</a></p>  
+  {% endif %}
+  {% if restaurant.url %}
+  <p>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a></p>  
+  {% endif %}
+
+  {% comment %} <div class="photos">
+    {% for photo in restaurant.photos.all %}
+       <div class="photo">
+         {% if photo.image %}
+         
+         {% comment %} <input type="file" id="file-input" accept="image/*"> {% endcomment %}
+          {% comment %} <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}" style="max-width: 200px; height: auto;">
+      {% else %}
+        
+      {% endif %}
+    </div> 
+ {% empty %} {% endcomment %}
+
+  {% comment %} <p>写真はまだありません。</p>  {% endcomment %}
+ {% comment %} {% endfor %}  {% endcomment %} 
+</div>
+
+<div class="edit-delete-button-container">
+    <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-add">写真を追加</a>
+    <a href="{% url 'account:edit_restaurant' restaurant.id %}" class="btn btn-edit">店舗情報を編集</a>
+    
+    <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" style="display: inline;">
+      {% csrf_token %}
+      <input type="submit" value="削除" class="btn btn-delete" onclick="return confirm('本当にこのレストランを削除しますか？');">
+  </div>
+  <div class="centered-button-container">
+  {% comment %} <div class="back-button-container"> {% endcomment %}
+    <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">レストラン一覧に戻る</a>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+    {% load static %} <!-- この行を残す -->
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%; /* 必要に応じて調整 */
+            max-width: 400px; /* 必要に応じて調整 */
+            margin: 0 auto; /* 上下のマージンは必要に応じて調整 */
+            padding: 20px; /* パディングは必要に応じて調整 */
+        }
+    </style> 
+
+    <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
+
+    <!-- 以下は他の必要なリンクやメタデータを含めてください -->
+    <!-- FullCalendar CSS -->
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css" rel="stylesheet"> {% endcomment %}
+    <!-- CSRF Token -->
+    {% comment %} <meta name="csrf-token" content="{{ csrf_token }}"> {% endcomment %}
+</head>
+<body>
+    <header class="header">
+        Only my gourmet diary
+    </header>
+    <!-- ページの内容 -->
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

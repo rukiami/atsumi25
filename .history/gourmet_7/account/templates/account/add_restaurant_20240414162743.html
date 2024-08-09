@@ -1,0 +1,43 @@
+{% extends "account/base.html" %}
+<div class="container">
+  <h1>店舗登録</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+        {% if field.errors %}
+            <div class="alert alert-danger">
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <!-- 画像フィールドに対するプレビュー機能 -->
+        {% if field.name == 'image' %}
+            <img id="image-preview-{{ forloop.counter }}" src="#" alt="Image preview" style="max-width: 200px; height: auto; display: none;"/>
+            <script>
+                // フィールドIDを指定してプレビュー機能を有効化するJavaScript
+                document.getElementById('{{ field.id_for_label }}').onchange = function (event) {
+                    var output = document.getElementById('image-preview-{{ forloop.counter }}');
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                    output.onload = function() {
+                        URL.revokeObjectURL(output.src) // メモリリークを防ぐためにオブジェクトURLを解放
+                    }
+                    output.style.display = 'block';
+                };
+            </script>
+        {% endif %}
+    </div>
+{% endfor %}
+<button type="submit" class="btn btn-primary">登録</button>
+</form>
+<div class="centered-button-container">
+<a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+</div>
+{% endblock %}

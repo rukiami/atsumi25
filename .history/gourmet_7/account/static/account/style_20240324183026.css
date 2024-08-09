@@ -1,0 +1,215 @@
+body, html {
+    background-color: white; /* 背景色を白に設定 */
+    color: black; /* テキスト色を黒に設定 */
+}
+
+.header {
+    background-color: LightSalmon; /* ヘッダーの背景色を削除 */
+    color: white; /* テキスト色を白に設定 */
+    padding: 10px 0; /* 上下の余白 */
+    text-align: center; /* テキストを中央揃え */
+    width: 100%; /* 幅を全体に設定 */
+    margin: 0 auto; /* 上下左右のマージンを自動に設定 */
+    border-radius: 0; /* 角丸をなくす */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を付ける */
+}    
+
+/* タイトルの文字サイズを小さくする */
+.main-title {
+    font-size: 24px; /* より小さいサイズに変更 */
+    text-align: center;
+    margin: 20px 0; /* 上下の余白を適切に設定 */
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* ログインと新規登録ボタンのスペースを増やす */
+.button-container {
+    margin-top: 40px; /* 上のマージンを増やしてボタンを下に移動 */
+}
+
+a {
+    color: SaddleBrown; /* リンクのテキスト色 */
+    text-decoration: none; /* リンクの下線を削除 */
+}
+
+a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.container {
+    width: 90%; /* コンテナの幅 */
+    max-width: 1200px; /* コンテナの最大幅 */
+    margin: 20px auto; /* 上下のマージンと自動で中央揃え */
+    padding: 20px; /* コンテナの内側のスペース */
+    border: none; /* 枠線を削除 */
+    box-shadow: none;
+}
+
+.alert {
+    color: red; /* アラートメッセージの色 */
+    text-align: center; /* アラートメッセージを中央揃えに */
+    margin-bottom: 20px; /* アラートメッセージの下のマージン */
+}
+
+.subheader {
+    margin-bottom: 15px; /* サブヘッダーの下部の余白 */
+    border: none; /* 枠線を削除 */
+    box-shadow: none;
+}
+
+/* 既存のスタイルはそのままにして、以下を追加または修正してください。 */
+
+.restaurant-list {
+    list-style: none; /* リストマーカーを除去 */
+    padding: 0; /* リストの左パディングをリセット */
+    margin-bottom: 20px; /* リストの下部の余白 */
+    color: black; /* リストのテキスト色を黒に変更 */
+    text-align: left; /* テキストを左揃え */
+}
+
+.restaurant-link {
+    display: block; /* リンクをブロック要素として設定 */
+    margin-left: 20px; /* リンクの左マージンを設定してインデントを追加 */
+    color: RoyalBlue; /* リンクの色を設定 */
+    font-weight: bold; /* リンクのテキストを太字に */
+    margin-bottom: 10px; /* 各リンク間のマージンを設定 */
+}
+
+/* レストランリストの項目間に余白を加える */
+.restaurant-list li {
+    margin-bottom: 15px; /* 各リスト項目の下マージンを設定 */
+}
+
+
+.restaurant-link:hover {
+    color: black; /* リンクにマウスを合わせた時の色 */
+}
+
+.btn, .btn-back {
+    background-color:	#FFA07A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+    display: inline-block;
+    text-decoration: none;
+    width: auto; /* ボタンの幅を自動に */
+    margin-top: 50px; /* ボタンの上の余白を大きくする */
+
+}
+
+.btn:hover, .btn-back:hover {
+    background-color: 	#FFA07A;
+}
+
+
+.no-restaurants {
+    font-style: italic; /* 登録がない場合のスタイル */
+}
+
+.genre-search, .logout-link, .home-return {
+    color: RoyalBlue; /* 新しい色に変更 */
+}
+
+.centered-container { /* 統合されたクラス名 */
+    display: flex; /* Flexboxを有効にする */
+    flex-direction: column; /* アイテムを縦並びにする */
+    justify-content: center; /* 水平方向に中央揃えにする */
+    align-items: center; /* 垂直方向に中央揃え */
+}
+
+.button-container {
+    display: flex; /* Flexboxを使用 */
+    flex-direction: column; /* 子要素を縦に並べる */
+    align-items: center; /* 子要素を中央に揃える */
+    justify-content: center; /* 子要素を中央に配置 */
+    margin: 20px 0; /* コンテナの上下のマージン */
+}
+
+h1 {
+    text-align: center; /* テキストを中央揃えに */
+    width: 100%; /* 幅を全体に */
+    margin-top: 20px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}
+
+.main-title {
+    text-align: center; /* テキストを中央揃えに */
+    width: 100%; /* 幅を全体に */
+    margin-top: 30px; /* 上の余白 */
+    margin-bottom: 30px; /* 下の余白 */
+}
+
+
+.comment {
+    font-size: 16px; /* テキストのサイズ */
+    color: black; /* テキストの色 */
+    margin-top: 20px; /* 「Welcome app」とコメントの間の距離 */
+    text-align: center
+  }
+
+  
+  #corner-image {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100px; /* 画像の幅 */
+    height: auto; /* 画像の高さを自動調整 */
+  }
+
+
+  .btn-back {
+    background-color: 	#FFA07A;
+    color: #5a5a5a;
+    border: 1px solid 	#FFA07A;
+}  
+
+
+/* 画像の下のマージンを追加 */
+img {
+    display: block; /* 画像をブロック要素として扱う */
+    margin-top: 50px; /* 画像の上の余白を設定 */
+    margin-bottom: 50px; /* 画像と次のコンテンツの間に余白を設定 */
+    max-width: 100%; /* 画像の最大幅をコンテナの幅に合わせる */
+    height: auto; /* 画像の高さを自動調整 */
+}
+
+/* リンクコンテナのスタイル */
+.links-center-container {
+    display: flex; /* Flexboxを有効にする */
+    flex-direction: column; /* アイテムを縦に並べる */
+    align-items: center; /* 水平方向の中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え */
+    margin-top: 20px; /* 上部の余白 */
+    margin-bottom: 20px; /* 下部の余白 */
+    text-align: center; /* テキストを中央揃えに */
+}
+
+/* リンクの間隔を修正 */
+.links-center-container a {
+    display: block; /* 各リンクをブロック要素として表示 */
+    margin-bottom: 25px; /* リンク間の間隔を調整 */
+    color: SaddleBrown; /* リンクの色 */
+    text-align: center; /* テキストを中央揃えに */
+}
+
+/* 最後のリンクから下のマージンを除去する */
+.links-center-container a:last-child {
+    margin-bottom: 0; /* 最後のリンクの下のマージンを除去 */
+}
+
+/* ホームに戻るボタンのスタイル */
+.btn-home {
+    background-color:	#FFA07A; /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+}
+
+.btn-home:hover {
+    background-color: 	#FFA07A; /* ホバー時の背景色 */
+}
+

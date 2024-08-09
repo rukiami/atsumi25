@@ -1,0 +1,39 @@
+{% extends "account/base.html" %}
+{% block title %}新規登録{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>新規登録</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {% if form.username.help_text %}
+                <small class="form-text text-muted">{{ form.username.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            {% if form.password1.help_text %}
+                <small class="form-text text-muted">{{ form.password1.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {% if form.password2.help_text %}
+                <small class="form-text text-muted">{{ form.password2.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn">登録</button>
+        </div> 
+    </form>
+    <div class="button-container">
+        <a href="{% url 'account:login' %}" class="btn-home">戻る</a>
+    </div>
+</div>
+{% endblock %}
+

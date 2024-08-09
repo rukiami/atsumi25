@@ -1,0 +1,27 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ restaurant.name }}の写真</h1>
+    <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-primary">新しい写真を追加</a>
+
+<div class="photos">
+    {% for photo in restaurant.photos.all %}
+    <div class="photo">
+            <!-- 画像が存在するかどうかを確認して、存在する場合にのみ表示 -->
+    {% if photo.image %}
+    <img src="{{ photo.image.url }}" alt="{{ restaurant.name }}" style="max-width: 200px; height: auto;">
+                <!-- クリックすると新しいタブで画像が表示されるようにリンクを設定 -->
+    <a href="{{ photo.image.url }}" target="_blank">画像を見る</a>
+    {% else %}
+                <!-- 画像が存在しない場合のテキスト -->
+      <p>画像がアップロードされていません。</p>
+    {% endif %}
+    </div>
+    {% empty %}
+    <p>写真はまだありません。</p>
+    {% endfor %}
+    </div>
+    <a href="{% url 'account:restaurant_list' %}" class="btn">戻る</a>
+</div>
+{% endblock %}

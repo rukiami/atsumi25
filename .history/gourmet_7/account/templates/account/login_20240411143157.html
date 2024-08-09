@@ -1,0 +1,20 @@
+{% block content %}
+<div class="login-form">
+    <h1>ログイン</h1>
+    <form method="post" action="{% url 'account:login' %}">
+        {% csrf_token %}
+        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            <div class="error-message">{{ form.username.errors|first }}</div>
+        </div>
+        <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            <div class="error-message">{{ form.password.errors|first }}</div>
+        </div>
+        <button type="submit" class="btn btn-primary">ログイン</button>
+    </form>
+    <a href="{% url 'account:signup' %}">アカウントをお持ちでない方</a>
+</div>
+{% endblock %}

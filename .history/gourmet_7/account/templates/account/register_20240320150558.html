@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>店舗登録 - Only my gourmet diary</title>
+</head>
+<body>
+    <h1>店舗登録</h1>
+    <form action="/register_store" method="post">
+        <label for="store_name">店名:</label>
+        <input type="text" id="store_name" name="store_name" required><br><br>
+
+        <label for="address">住所:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="phone_number">電話番号:</label>
+        <input type="tel" id="phone_number" name="phone_number"><br><br>
+
+        <label for="category">カテゴリ:</label>
+        <select id="category" name="category">
+            <option value="和食">和食</option>
+            <option value="洋食">洋食</option>
+            <option value="中華">中華</option>
+            <!-- 他のカテゴリーを追加 -->
+        </select><br><br>
+
+        <input type="submit" value="登録">
+    </form>
+</body>
+</html>

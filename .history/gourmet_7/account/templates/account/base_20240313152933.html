@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+
+    <!-- FullCalendar CSS -->
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css" rel="stylesheet"> {% endcomment %}
+
+    <!-- CSRF Token -->
+    {% comment %} <meta name="csrf-token" content="{{ csrf_token }}"> {% endcomment %}
+</head>
+<body>
+    <h1>ユーザー登録</h1>
+    <form action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="登録"></p>
+    </form>
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+            <p><input type="submit" value="戻る"></p>
+    </form>
+</body>
+</html>
+
+
+
+
+    {% comment %} <meta name="csrf-token" content="{{ csrf_token }}">    
+
+{% block content %}
+{% endblock %} {% endcomment %}
+
+
+

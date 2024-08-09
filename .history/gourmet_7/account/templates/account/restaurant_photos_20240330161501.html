@@ -1,0 +1,29 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ restaurant.name }}の写真</h1>
+    <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-primary">新しい写真を追加</a>
+    {% comment %} <a href="{% url 'account:add_photo' restaurant.id %}" class="btn">戻る</a> {% endcomment %}
+    {% comment %} <a href="{% url 'account:restaurant_list' %}" class="btn">戻る</a> {% endcomment %}
+
+
+    <div class="photos">
+        {% comment %} {% for photo in photos %} {% endcomment %}
+        {% for photo in restaurant.photos.all %}        
+        <div class="photo">
+            <img src="{{ photo.image.url }}" alt="画像の説明">
+
+            {% comment %} <a href="{{ photo.image.url }}" target="_blank">{{ photo.image.url }}</a> {% endcomment %}
+            {% comment %} <img src="{{ photo.image.url }}" alt="Restaurant photo" style="max-width: 200px; height: auto;">
+                 {% endcomment %}
+        </div>
+        {% empty %}
+        <p>写真はまだありません。</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'account:restaurant_list' %}" class="btn">戻る</a>
+
+    
+</div>
+{% endblock %}

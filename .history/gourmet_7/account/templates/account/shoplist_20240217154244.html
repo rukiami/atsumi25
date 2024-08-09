@@ -1,0 +1,17 @@
+<!-- templates/account/shop_list.html -->
+{% extends "account/base.html" %}
+
+{% block title %}Shop List{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Shop List</h1>
+    <ul>
+      {% for shop in object_list %}
+        <li>{{ shop.name }} - {{ shop.address }}</li>
+      {% empty %}
+        <li>No shops available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

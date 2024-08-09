@@ -1,0 +1,57 @@
+{% extends 'account/base.html' %}
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ restaurant.name }}</h1>
+    {% comment %} <p>カテゴリー: {{ restaurant.category }}</p> {% endcomment %}
+    <p>場所: {{ restaurant.location }}</p>
+    <p>ジャンル: {{ restaurant.genre }}</p>
+    <p>価格帯: {{ restaurant.price_range }}</p>
+    {% if restaurant.google_maps %}
+    <p>Googleマップ: <a href="{{ restaurant.google_maps }}" target="_blank">{{ restaurant.google_maps }}</a></p>    
+        {% comment %} <iframe
+          width="600"
+          height="450"
+          frameborder="0"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          src="{{ restaurant.google_maps }}&output=embed">
+        </iframe> {% endcomment %}
+      
+    {% endif %}
+    {% if restaurant.url %}
+    <p>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a></p>
+        
+    {% endif %}
+    <div class="photos">
+      {% comment %} <h2 class="photos-title">写真一覧</h2> {% endcomment %}
+      {% for photo in restaurant.photos.all %}
+          <img src="{{ photo.image.url }}" alt="{{ photo.restaurant.name }}" style="max-width: 200px; height: auto;">
+        {% comment %} <div class="photo"> {% endcomment %}
+          {% comment %} <img src="{{ photo.image.url }}" alt="photo" style="max-width: 200px; height: auto;"> {% endcomment %}
+        {% comment %} </div> {% endcomment %}
+      {% empty %}
+        <p>写真はまだありません。</p>
+      {% endfor %}
+    </div>
+
+    <!-- 作成日時と更新日時を表示 -->
+    <p>作成日時: {{ restaurant.created_at|date:"Y年m月d日 H:i" }}</p>
+    <p>更新日時: {{ restaurant.updated_at|date:"Y年m月d日 H:i" }}</p>
+
+    <div class="edit-delete-button-container">
+      <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-primary">写真を追加</a>
+      <a href="{% url 'account:edit_restaurant' restaurant.id %}" class="btn btn-secondary">店舗情報を編集</a>
+      {% comment %} <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" style="margin-top: 20px;"> {% endcomment %}
+        <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" style="display: inline;">  
+        {% csrf_token %}
+        <input type="submit" value="削除" class="btn btn-danger" onclick="return confirm('本当にこのレストランを削除しますか？');">
+      </form>
+      {% comment %} <a href="{% url 'account:restaurant_list' %}" class="btn btn-back" style="margin-top: 20px;">レストラン一覧に戻る</a> {% endcomment %}
+  </div>
+  <div class="back-button-container">
+    <a href="{% url 'account:restaurant_list' %}" class="btn btn-back-list">レストラン一覧に戻る</a>
+</div>
+{% endblock %} 

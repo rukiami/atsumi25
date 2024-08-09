@@ -1,0 +1,36 @@
+{% extends "account/base.html" %}
+
+{% block title %}Restaurant List{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>レストラン一覧</h2>  
+
+    <ul class="restaurant-list">
+      {% for restaurant in restaurants %} 
+        <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}">
+            {{ restaurant.name }}
+          </a>
+          - {{ restaurant.address|default:"(未記入)" }}
+          {% if restaurant.url %}
+            <br>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a>
+          {% else %}
+            <br>ウェブサイト: (未記入)
+          {% endif %}
+        </li>
+        {% empty %}
+        <p>まだ登録はありません</p>
+      {% endfor %}
+    </ul>
+
+    <div class="back-button-container"> 
+      {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
+      <button type="button" onclick="history.back()" class="btn-home">ホームに戻る</button>
+
+        {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
+    </div>
+  </div>
+{% endblock %}
+
+    

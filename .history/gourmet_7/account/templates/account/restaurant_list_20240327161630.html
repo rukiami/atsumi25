@@ -1,0 +1,34 @@
+<!-- templates/account/restaurant_list.html -->
+{% extends "account/base.html" %}
+
+{% block title %}Restaurant List{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% comment %} <div class="restaurant-list"> {% endcomment %}
+    <h2>レストラン一覧</h2>  
+    {% comment %} <h1 class="header">Restaurant List</h1> {% endcomment %}
+    {% comment %} <p class="subheader">お店を登録しよう</p> {% endcomment %}
+    {% comment %} <h1>Restaurant List</h1>
+    <p>お店を登録しよう</p> <!-- 追加する行 --> {% endcomment %}
+    <a href="{% url 'account:add_restaurant' %}" class="btn btn-primary">お店を新規登録</a>
+    {% if restaurant.url %}
+    <ul class="restaurant-list">
+      {% for restaurant in restaurants %} 
+        <li>
+          <a href="{% url 'account:restaurant_detail' restaurant.id %}">{{ restaurant.name }}</a>
+          {% if restaurant.address %} - {{ restaurant.address }}{% endif %}
+          {% if restaurant.url %}<br>ウェブサイト: <a href="{{ restaurant.url }}">{{ restaurant.url }}</a>{% endif %}
+
+          
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>まだ登録はありません</p>
+  {% endif %}
+  
+  <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+</div>
+{% endblock %}
+    
